@@ -24,11 +24,12 @@ class Ingress(ApiObject):
         https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#ingress-v1beta1-extensions
     """
 
-    obj_type = client.ExtensionsV1beta1Api
+    obj_type = getattr(client, 'NetworkingV1Api', None) or getattr(client, 'ExtensionsV1beta1Api', None)
 
     api_clients = {
-        "preferred": client.ExtensionsV1beta1Api,
-        "extensions/v1beta1": client.ExtensionsV1beta1Api,
+        "preferred": obj_type,
+        "extensions/v1beta1": getattr(client, 'ExtensionsV1beta1Api', None),
+        "networking.k8s.io/v1": getattr(client, 'NetworkingV1Api', None),
     }
 
     def __str__(self):

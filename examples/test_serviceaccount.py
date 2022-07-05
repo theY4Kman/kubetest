@@ -1,7 +1,6 @@
 """An example of using kubetest to manage a serviceaccount."""
 
 import os
-from time import sleep
 
 
 def test_serviceaccount(kube):

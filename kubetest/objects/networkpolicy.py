@@ -25,7 +25,7 @@ class NetworkPolicy(ApiObject):
     obj_type = client.V1NetworkPolicy
 
     api_clients = {
-        "preffered": client.NetworkingV1Api,
+        "preferred": client.NetworkingV1Api,
         "networking.k8s.io/v1": client.NetworkingV1Api,
     }
 

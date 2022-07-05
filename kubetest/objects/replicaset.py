@@ -32,14 +32,12 @@ class ReplicaSet(ApiObject):
     api_clients = {
         "preferred": client.AppsV1Api,
         "apps/v1": client.AppsV1Api,
-        "apps/v1beta2": client.AppsV1beta2Api,
+        "apps/v1beta2": getattr(client, 'AppsV1beta2Api', None),
     }
 
     def __init__(self, *args, **kwargs) -> None:
         super(ReplicaSet, self).__init__(*args, **kwargs)
         self._add_kubetest_labels()
-
-        client.AppsV1Api.read_namespaced_replica_set()
 
     def _add_kubetest_labels(self) -> None:
         """Add a kubetest label to the ReplicaSet object.

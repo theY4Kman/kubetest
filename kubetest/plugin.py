@@ -13,6 +13,7 @@ from typing import Optional
 import kubernetes
 import pytest
 import urllib3
+import urllib3.exceptions
 
 from kubetest import errors, markers
 from kubetest.client import TestClient

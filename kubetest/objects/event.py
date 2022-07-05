@@ -22,7 +22,7 @@ class Event:
         https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#event-v1-core
     """
 
-    obj_type = client.V1Event
+    obj_type = getattr(client, 'CoreV1Event', None) or getattr(client, 'V1Event', None)
 
     api_clients = {
         "preferred": client.CoreV1Api,
